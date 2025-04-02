@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://0xht8o1bbre4"]
+
+[ext_resource type="Texture2D" uid="uid://6v6flnd4ii13" path="res://Assets/tree.png" id="1_sx5ol"]
+[ext_resource type="Script" path="res://Scripts/tree.gd" id="1_xcyn8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qsy2b"]
+
+[node name="tree" type="CharacterBody3D"]
+script = ExtResource("1_xcyn8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qsy2b")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.33, 0, 0, 0, 2.33, 0, 0, 0, 2.33, 0.283972, 6.2294, 0)
+billboard = 1
+texture = ExtResource("1_sx5ol")

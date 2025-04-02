@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj8d1olxj46ie"
-path.s3tc="res://.godot/imported/man_sad.png-2136e2e8b75942b45590056ffaedeb1d.s3tc.ctex"
+uid="uid://6v6flnd4ii13"
+path.s3tc="res://.godot/imported/tree.png-f0858fcddf0a23aa79accde76137cff6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/man_sad.png"
-dest_files=["res://.godot/imported/man_sad.png-2136e2e8b75942b45590056ffaedeb1d.s3tc.ctex"]
+source_file="res://Assets/tree.png"
+dest_files=["res://.godot/imported/tree.png-f0858fcddf0a23aa79accde76137cff6.s3tc.ctex"]
 
 [params]
 

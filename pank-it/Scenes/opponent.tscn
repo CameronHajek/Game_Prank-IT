@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4gk8tehd3si4"]
+[gd_scene load_steps=4 format=3 uid="uid://d4gk8tehd3si4"]
 
-[ext_resource type="Texture2D" uid="uid://lqoni4tcmpye" path="res://Assets/man_sad.png" id="1_4m0d5"]
+[ext_resource type="Script" path="res://Scripts/opponent.gd" id="1_mqygq"]
+[ext_resource type="Texture2D" uid="uid://dj8d1olxj46ie" path="res://Assets/man_sad.png" id="2_cw4py"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4bwsm"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="SadMan" type="CharacterBody3D"]
+script = ExtResource("1_mqygq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4bwsm")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("1_4m0d5")
+texture = ExtResource("2_cw4py")
