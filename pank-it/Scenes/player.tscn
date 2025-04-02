@@ -8,8 +8,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j1bl"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_pjecp"]
-radius = 2.4382
+[sub_resource type="SphereShape3D" id="SphereShape3D_k37ti"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_0qie1")
@@ -24,10 +23,10 @@ shape = SubResource("CapsuleShape3D_8j1bl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71392, 0)
 
 [node name="HornAOE" type="Area3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HornAOE"]
-shape = SubResource("SphereShape3D_pjecp")
+shape = SubResource("SphereShape3D_k37ti")
 
 [node name="ScoreUI" type="Label" parent="."]
 anchors_preset = -1
@@ -69,4 +68,4 @@ texture = ExtResource("2_wh5xs")
 [node name="HornSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gacm7")
 
-[connection signal="body_entered" from="HornAOE" to="." method="_on_horn_aoe_body_entered"]
+[connection signal="body_entered" from="HornAOE" to="." method="_on_body_entered"]

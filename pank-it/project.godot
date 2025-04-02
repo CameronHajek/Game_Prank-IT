@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Entities="*res://Scripts/entity_scene_autoload.gd"
+GlobalVars="*res://Scripts/global_vars.gd"
 
 [input]
 
