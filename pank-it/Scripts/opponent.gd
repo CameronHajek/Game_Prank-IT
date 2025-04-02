@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Sad_Man
 
+signal become_happy()
+
 
 @onready var sprite = $Sprite3D
 

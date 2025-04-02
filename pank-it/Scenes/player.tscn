@@ -68,3 +68,5 @@ texture = ExtResource("2_wh5xs")
 
 [node name="HornSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gacm7")
+
+[connection signal="body_entered" from="HornAOE" to="." method="_on_horn_aoe_body_entered"]

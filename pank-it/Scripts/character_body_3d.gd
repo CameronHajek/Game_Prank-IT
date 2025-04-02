@@ -69,3 +69,7 @@ func _process(delta):
 	# Exits the current scene with the "Esc" key
 	if Input.is_action_just_pressed("exit_game"):
 		get_tree().quit()
+
+func _on_horn_aoe_body_entered(body):
+	if body is Sad_Man:
+		print("Sad Man Found.")
