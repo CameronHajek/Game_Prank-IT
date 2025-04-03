@@ -11,10 +11,13 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.25
 
+var times_honked = 0
+
 var fullscreen = false
 
-var times_honked = 0
 var sadness_found = false
+var is_dead = false
+
 
 
 func _ready():
@@ -26,26 +29,40 @@ func _input(event):
 		var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
 	
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and is_dead == false:
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
+	else:
+		return
+
+func _process(delta):
+	score_lable.text = "Score: %s" % Global.score
+	honk_counter.text = "Times Honked: %s" % times_honked
 	
 	if Input.is_action_just_pressed("honk_horn"):
 		Global._emit_honk()
 		horn.scale = Vector2(1, 0.75)
 		hornSfx.play()
 		times_honked += 1
+	
+	# Returns the scale of the player's hand to the default.
+	horn.scale.y = move_toward(horn.scale.y, 1, 1 * delta)
+	
+	# Exits the current scene with the "Esc" key
+	if Input.is_action_just_pressed("exit_game"):
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("restart"):
+		restart()
+	elif Input.is_action_just_pressed("restart") and is_dead == true:
+		return
 
 func _physics_process(delta):
-	score_lable.text = "Score: %s" % Global.score
-	honk_counter.text = "Times Honked: %s" % times_honked
+	if is_dead == true:
+		return
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -59,10 +76,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func _process(delta):
-	# Returns the scale of the player's hand to the default.
-	horn.scale.y = move_toward(horn.scale.y, 1, 1 * delta)
-	
-	# Exits the current scene with the "Esc" key
-	if Input.is_action_just_pressed("exit_game"):
-		get_tree().quit()
+func restart():
+	get_tree().reload_current_scene()
+
+func kill():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_0qie1"]
 [ext_resource type="Texture2D" uid="uid://cyk2rcjeihj4e" path="res://Assets/The_Weapon.png" id="2_wh5xs"]
-[ext_resource type="AudioStream" uid="uid://badc22t1qfcrc" path="res://Assets/clown-horn-honks.mp3" id="3_gacm7"]
+[ext_resource type="AudioStream" uid="uid://badc22t1qfcrc" path="res://Assets/Sounds/clown-horn-honks.mp3" id="3_gacm7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_exhsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j1bl"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_0qie1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

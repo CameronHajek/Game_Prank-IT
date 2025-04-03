@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4gk8tehd3si4"]
+[gd_scene load_steps=6 format=3 uid="uid://d4gk8tehd3si4"]
 
 [ext_resource type="Script" path="res://Scripts/opponent.gd" id="1_mqygq"]
 [ext_resource type="Texture2D" uid="uid://dj8d1olxj46ie" path="res://Assets/man_sad.png" id="2_cw4py"]
+[ext_resource type="AudioStream" uid="uid://d1im3cxyyyhkc" path="res://Assets/Sounds/rejoice.mp3" id="3_wfbac"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4bwsm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n0hsw"]
 
 [node name="SadMan" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_mqygq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -27,6 +29,9 @@ shape = SubResource("SphereShape3D_n0hsw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." groups=["sad_man"]]
+stream = ExtResource("3_wfbac")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

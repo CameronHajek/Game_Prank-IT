@@ -4,6 +4,7 @@ class_name Sad_Man
 
 @onready var sprite = $Sprite3D
 @onready var timer = $Timer
+@onready var yesSFX = $AudioStreamPlayer3D
 
 var is_happy = false
 var player_found = false
@@ -28,6 +29,9 @@ func _process(delta):
 	if is_happy == true and not score_changed:
 		score_changed = true
 		Global.add_score()
+	
+	if is_happy == true and horn_heard == true and player_found == true:
+		yesSFX.play()
 	
 	if not Global.honk_horn.is_connected(self._on_horn_honked):
 		Global.connect("honk_horn", _on_horn_honked)

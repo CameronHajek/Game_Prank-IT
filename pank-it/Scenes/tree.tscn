@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qsy2b"]
 
 [node name="tree" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_xcyn8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
