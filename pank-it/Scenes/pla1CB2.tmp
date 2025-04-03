@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gbw866wsgnr"]
+[gd_scene load_steps=7 format=3 uid="uid://gbw866wsgnr"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_0qie1"]
 [ext_resource type="Texture2D" uid="uid://cyk2rcjeihj4e" path="res://Assets/The_Weapon.png" id="2_wh5xs"]
@@ -7,6 +7,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_exhsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j1bl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k37ti"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_0qie1")
@@ -19,6 +21,12 @@ shape = SubResource("CapsuleShape3D_8j1bl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71392, 0)
+
+[node name="HornAOE" type="Area3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HornAOE"]
+shape = SubResource("SphereShape3D_k37ti")
 
 [node name="ScoreUI" type="Label" parent="."]
 anchors_preset = -1
@@ -59,3 +67,5 @@ texture = ExtResource("2_wh5xs")
 
 [node name="HornSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gacm7")
+
+[connection signal="body_entered" from="HornAOE" to="." method="_on_body_entered"]

@@ -5,7 +5,6 @@ class_name Player
 @onready var score_lable = $ScoreUI
 @onready var honk_counter = $HonkCounter
 @onready var horn = $TextureRect
-@onready var hornArea = $HornAOE
 @onready var hornSfx = $HornSFX
 
 const SPEED = 5.0
@@ -15,11 +14,11 @@ const MOUSE_SENS = 0.25
 var fullscreen = false
 
 var times_honked = 0
+var sadness_found = false
 
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	hornArea.PROCESS_MODE_DISABLED
 
 func _input(event):
 	if event.is_action_pressed("enter_fullscreen"):
@@ -31,13 +30,13 @@ func _input(event):
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
 	
 	if Input.is_action_just_pressed("honk_horn"):
-		GlobalVars.emit_signal("honk_horn")
+		Global._emit_honk()
 		horn.scale = Vector2(1, 0.75)
 		hornSfx.play()
 		times_honked += 1
 
 func _physics_process(delta):
-	score_lable.text = "Score: %s" % GlobalVars.score
+	score_lable.text = "Score: %s" % Global.score
 	honk_counter.text = "Times Honked: %s" % times_honked
 	
 	# Add the gravity.
@@ -67,11 +66,3 @@ func _process(delta):
 	# Exits the current scene with the "Esc" key
 	if Input.is_action_just_pressed("exit_game"):
 		get_tree().quit()
-
-
-func _on_body_entered(body):
-	if body is Sad_Man:
-		print("target found")
-	
-	if body is Sad_Man and Input.is_action_just_pressed("honk_horn"):
-		print("conditions met")
